@@ -134,7 +134,7 @@ elif page=='Analysis':
             fig5=px.line(df1,y='biofuel_electricity',x='year')
             st.plotly_chart(fig5,use_container_width=True)
 
-        st.markdown('All kinds of renewable energy generation has generally increased overtime.')
+        st.markdown('All kinds of renewable energy generation have generally increased overtime.')
 
 
 ############################################################################

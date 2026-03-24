@@ -31,24 +31,26 @@ if selected_country:
     filtered_df = filtered_df[
     (filtered_df['country']==(selected_country))]
 
-filtered_df=filtered_df[(filtered_df['year'].between(min_year,max_year))&
-                        (filtered_df['country']==selected_country)
-                       ]
+    filtered_df=filtered_df[(filtered_df['year'].between(min_year,max_year))&
+                        (filtered_df['country']==selected_country)]
 
-st.dataframe(filtered_df)
+    st.dataframe(filtered_df)
 
 # Dividing the Webage into Multiple parts
 
-page=st.radio('choose an option',['navigate','Analysis'])
+page=st.radio('choose an option',['Navigate','Analysis'])
 
 
 if page=='Navigate':
-    st.dataframe(filtered_df)
+    st.subheader('Data General View')
+
 
 elif page=='Analysis':
 
-    tab1,tab2,tab3,tab4,tab5=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
-    'Impact of Renewable Energy','Top 5'])
+
+
+    tab1,tab2,tab3,tab4,tab5,tab6=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
+    'Impact of Renewable Energy','Top 5','Energy Matrix'])
 
     with tab1:
 
@@ -83,7 +85,6 @@ elif page=='Analysis':
         col7.metric('average energy_per_gdp',energy_per_gdp )
 
 ###########################################################################################
-
     with tab2:
 
         st.subheader('Time Series Analysis')
@@ -117,12 +118,10 @@ elif page=='Analysis':
             fig5=px.line(df1,y='biofuel_electricity',x='year')
             st.plotly_chart(fig5,use_container_width=True)
 
-        st.markdown('All kinds of renewable energy generation have generally increased overtime.')
+        st.markdown('All kinds of renewable energy have generally increased over time')
 
 
 ############################################################################
-
-
     with tab3:
 
         income = df[(df['country'] == 'Low-income countries')|
@@ -202,10 +201,9 @@ elif page=='Analysis':
                    trendline='ols')
             st.plotly_chart(fig17,use_container_width=True)
 
-        st.markdown('All kinds of renewable energy resources have a positive impact on total electricity generation (increased generation)')
-        st.markdown('Hydro power has the biggest  impact')               
+        st.markdown('All kinds of renewable energy resources correlates positively with total electricity generation (increased generation)')
+        st.markdown('Hydro power has the biggest impact and most stable growth')               
 ##############################################################################################################################
-
     with tab5:
 
         col25,col26,col27=st.columns(3,gap='large')
@@ -237,8 +235,22 @@ elif page=='Analysis':
             df6=df.groupby('country')['biofuel_electricity'].sum().reset_index().sort_values(by='biofuel_electricity',ascending=False)
             pie_5=px.pie(df6.head(5),values='biofuel_electricity',names='country')
             st.plotly_chart(pie_5,use_container_width=True)
+######################################################################################################
+    with tab6:
 
+        st.subheader('energy resources VS. energy access indicators')
+        col30=st.columns()
 
+        with col30:
+            corr_matrix = px.imshow(df[[
+                            'electricity_generation','total_energy_per_capita','energy_per_gdp',
+                            'hydro_electricity', 'biofuel_electricity',
+                            'solar_electricity', 'wind_electricity','renewables_electricity'
+                                ]].corr(),text_auto = True,
+                             color_continuous_scale=color_continuous_scale=px.colors.sequential.Blues_r)
+
+        st.markdown("""Renewable energy has an weak impact/indirect relationship with the induvidual share of energy and energy_per_gdp, 
+        but correlates positively with electricity generation""")
 
 
 

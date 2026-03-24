@@ -5,3 +5,8 @@ pandas
 numpy
 plotly
 statsmodels
+<<<<<<< HEAD
+=======
+streamlit==1.30.0
+altair==5.2.0
+>>>>>>> 59b74a206612c8904a4adb9e55712f1a43278603

@@ -23,29 +23,6 @@ year_filter= st.sidebar.slider('year range',min_year,max_year,
                                 (min_year,max_year))
 
 
-
-# Economic and Energy Access Indicators Filters
-
-min_electricity,max_electricity = st.sidebar.slider('electricity_generation_range',
-                                    df['electricity_generation'].min(),
-                                    df['electricity_generation'].max(),
-                                    (float(df['electricity_generation'].min()),float(df['electricity_generation'].max())))
-
-min_gdp,max_gdp = st.sidebar.slider('GDP_range',
-                                    df['gdp'].min(),
-                                    df['gdp'].max(),
-                                    (float(df['gdp'].min()),float(df['gdp'].max())))
-
-min_energy,max_energy= st.sidebar.slider('energy_per_capita_range',
-                                    df['total_energy_per_capita'].min(),
-                                    df['total_energy_per_capita'].max(),
-                                    (float(df['total_energy_per_capita'].min()),float(df['total_energy_per_capita'].max())))
-
-min_energy_gpd,max_energy_gpd=st.sidebar.slider('energy_per_gdp_range',
-                                    df['energy_per_gdp'].min(),
-                                    df['energy_per_gdp'].max(),
-                                    (float(df['energy_per_gdp'].min()),float(df['energy_per_gdp'].max())))
-
 # Applying filters to create Interactive Dashboard
 
 filtered_df=df
@@ -54,12 +31,9 @@ if selected_country:
     filtered_df = filtered_df[
     (filtered_df['country']==(selected_country))]
 
-filtered_df=filtered_df[(filtered_df['year'].between(min_year,max_year))&(filtered_df['country']==selected_country)&
-                        (filtered_df['electricity_generation'].between(min_electricity,max_electricity))&
-                        (filtered_df['gdp'].between(min_gdp,max_gdp))&
-                        (filtered_df['total_energy_per_capita'].between(min_energy,max_energy))&
-                        (filtered_df['energy_per_gdp'].between(min_energy_gpd,max_energy_gpd))
-                        ]
+filtered_df=filtered_df[(filtered_df['year'].between(min_year,max_year))&
+                        (filtered_df['country']==selected_country)
+                       ]
 
 st.dataframe(filtered_df)
 
@@ -81,22 +55,31 @@ elif page=='Analysis':
         st.subheader('General KPIs')
         col1,col2=st.columns(2,gap='large')
         col3,col4=st.columns(2,gap='large')
-        col5,col6,col7=st.columns(3,gap='large')
+        col5,col7=st.columns(2,gap='large')
+
+        def format_number(value):
+            if value >= 1e9:
+                return f"{value/1e9:.2f}B"
+            elif value >= 1e6:
+                return f"{value/1e6:.2f}M"
+            elif value >= 1e3:
+                return f"{value/1e3:.2f}K"
+            else:
+                return f"{value:.2f}"
+
 
         avg_energy = round(filtered_df['electricity_generation'].mean(),2)
         avg_energy_per_capita = round(filtered_df['total_energy_per_capita'].mean(),2)
         avg_gdp =round(filtered_df['gdp'].mean(),2)
         total_pop = round(filtered_df['population'].sum(),2)
         electricity_demand =round(filtered_df['electricity_demand'].mean(), 2)
-        avg_energy_consumption=round(filtered_df['primary_energy_consumption'].mean(), 2)
         energy_per_gdp=round(filtered_df['energy_per_gdp'].mean(), 2)
 
-        col1.metric('average energy generation', avg_energy)
-        col2.metric('average energy_per_capita',avg_energy_per_capita )
-        col3.metric('average GDP',avg_gdp )
-        col4.metric('total population',total_pop )
-        col5.metric('average energy_demand',electricity_demand )
-        col6.metric('average energy_consumption',avg_energy_consumption )
+        col1.metric('average energy generation',format_number(avg_energy))
+        col2.metric('average energy_per_capita',format_number(avg_energy_per_capita) )
+        col3.metric('average GDP',format_number(avg_gdp))
+        col4.metric('total population',format_number(total_pop))
+        col5.metric('average energy_demand',format_number(electricity_demand))
         col7.metric('average energy_per_gdp',energy_per_gdp )
 
 ###########################################################################################

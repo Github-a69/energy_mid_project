@@ -238,7 +238,7 @@ elif page=='Analysis':
 ######################################################################################################
     with tab6:
 
-        st.subheader('energy resources VS. energy access indicators')
+        st.subheader('renewable energy VS. energy access indicators')
 
         corr_matrix = px.imshow(df[[
                             'electricity_generation','total_energy_per_capita','energy_per_gdp',
@@ -248,7 +248,7 @@ elif page=='Analysis':
 
         st.plotly_chart(corr_matrix,use_container_width=True)
 
-        st.markdown("""Renewable energy has a weak impact/indirect relationship with the induvidual share of energy and energy_per_gdp, 
+        st.markdown("""Renewable energy has a weak impact/indirect relationship with the individual share of energy and energy_per_gdp, 
         but correlates positively with electricity generation""")
 
 

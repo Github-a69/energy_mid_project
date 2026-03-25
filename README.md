@@ -1,4 +1,4 @@
-This project studies renewable energy generation over time and examines its relationship with: electricity generation , economic development(GDP and income), and energy access (individual share of energy and energy per GDP)
+This project studies renewable energy generation over time and examines its relationship with: electricity generation , economic development ( GDP and income ), and energy access (individual share of energy and energy per GDP)
 
 key Questions:
 Has renewable energy generation increased over time?

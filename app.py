@@ -202,7 +202,7 @@ elif page=='Analysis':
             st.plotly_chart(fig17,use_container_width=True)
 
         st.markdown('All kinds of renewable energy resources correlates positively with total electricity generation (increased generation)')
-        st.markdown('Hydro power has the biggest impact and most stable growth')               
+        st.markdown('Hydro power has the strongest correlation and the most stable growth')               
 ##############################################################################################################################
     with tab5:
 

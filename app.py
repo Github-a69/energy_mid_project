@@ -31,7 +31,7 @@ if selected_country:
     filtered_df = filtered_df[
     (filtered_df['country']==(selected_country))]
 
-    filtered_df=filtered_df[(filtered_df['year'].between(min_year,max_year))&
+    filtered_df=filtered_df[(filtered_df['year'].between(year_filter[0], year_filter[1]))&
                         (filtered_df['country']==selected_country)]
 
     st.dataframe(filtered_df)
@@ -50,7 +50,7 @@ elif page=='Analysis':
 
 
     tab1,tab2,tab3,tab4,tab5,tab6=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
-    'Impact of Renewable Energy','Top 5','Energy Matrix'])
+    'Renewable Energy VS. Electricity','Renewable Energy by Continent','Energy Matrix'])
 
     with tab1:
 
@@ -84,7 +84,7 @@ elif page=='Analysis':
         col5.metric('average energy_demand',format_number(electricity_demand))
         col7.metric('average energy_per_gdp',energy_per_gdp )
 
-###########################################################################################
+##############################################################################################################
     with tab2:
 
         st.subheader('Time Series Analysis')
@@ -121,7 +121,7 @@ elif page=='Analysis':
         st.markdown('All kinds of renewable energy have generally increased over time')
 
 
-############################################################################
+#######################################################################################################
     with tab3:
 
         income = df[(df['country'] == 'Low-income countries')|
@@ -156,14 +156,6 @@ elif page=='Analysis':
         with col17:
             fig10=px.bar(income,y='biofuel_electricity',x='country')
             st.plotly_chart(fig10,use_container_width=True)
-
-        with col18:
-            fig11=px.bar(income,y='nuclear_electricity',x='country')
-            st.plotly_chart(fig11,use_container_width=True)
-
-        with col19:
-            fig12=px.bar(income,y='traditional_non_renewables',x='country')
-            st.plotly_chart(fig12,use_container_width=True)
 
         st.markdown('High-income countries produce more renewable energy than low and middle-income countries')
         st.markdown('Hydro power and wind energy are the top two kinds of renewable energy adapted in high-income and upper-middle-income countries')
@@ -209,32 +201,41 @@ elif page=='Analysis':
         col25,col26,col27=st.columns(3,gap='large')
         col28,col29=st.columns(2,gap='large')
 
+        continent = df[(df['country'] == 'Africa')|
+                      (df['country'] =='Australia')|
+                      (df['country'] == 'Asia')|
+                      (df['country'] == 'Europe')|
+                      (df['country'] == 'North America')|
+                      (df['country'] == 'South America')
+                      ] 
 
         with col25:
-            df2=df.groupby('country')['renewables_electricity'].sum().reset_index().sort_values(by='renewables_electricity',ascending=False)
-            pie_1=px.pie(df2.head(5),values='renewables_electricity',names='country')
-            st.plotly_chart(pie_1,use_container_width=True)
+            fig18=px.bar(continent,y='renewables_electricity',x='country')
+            st.plotly_chart(fig18,use_container_width=True)
 
         with col26:
-            df3=df.groupby('country')['solar_electricity'].sum().reset_index().sort_values(by='solar_electricity',ascending=False)
-            pie_2=px.pie(df3.head(5),values='solar_electricity',names='country')
-            st.plotly_chart(pie_2,use_container_width=True)
+            fig18=px.bar(continent,y='solar_electricity',x='country')
+            st.plotly_chart(fig18,use_container_width=True)
+
+
 
         with col27:
-            df4=df.groupby('country')['wind_electricity'].sum().reset_index().sort_values(by='wind_electricity',ascending=False)
-            pie_3=px.pie(df4.head(5),values='wind_electricity',names='country')
-            st.plotly_chart(pie_3,use_container_width=True)
+            fig18=px.bar(continent,y='wind_electricity',x='country')
+            st.plotly_chart(fig18,use_container_width=True)
+
 
 
         with col28:
-            df5=df.groupby('country')['hydro_electricity'].sum().reset_index().sort_values(by='hydro_electricity',ascending=False)
-            pie_4=px.pie(df5.head(5),values='hydro_electricity',names='country')
-            st.plotly_chart(pie_4,use_container_width=True)
+            fig18=px.bar(continent,y='biofuel_electricity',x='country')
+            st.plotly_chart(fig18,use_container_width=True)
+
 
         with col29:
-            df6=df.groupby('country')['biofuel_electricity'].sum().reset_index().sort_values(by='biofuel_electricity',ascending=False)
-            pie_5=px.pie(df6.head(5),values='biofuel_electricity',names='country')
-            st.plotly_chart(pie_5,use_container_width=True)
+            fig18=px.bar(continent,y='hydro_electricity',x='country')
+            st.plotly_chart(fig18,use_container_width=True)
+
+
+
 ######################################################################################################
     with tab6:
 
@@ -248,7 +249,7 @@ elif page=='Analysis':
 
         st.plotly_chart(corr_matrix,use_container_width=True)
 
-        st.markdown("""Renewable energy has a weak impact/indirect relationship with the individual share of energy and energy_per_gdp, 
+        st.markdown("""Renewable energy has a weak relationship with the individual share of energy and energy_per_gdp, 
         but correlates positively with electricity generation""")
 
 

@@ -31,8 +31,8 @@ if selected_country:
     filtered_df = filtered_df[
     (filtered_df['country']==(selected_country))]
 
-    filtered_df=filtered_df[(filtered_df['year'].between(year_filter[0], year_filter[1]))&
-                        (filtered_df['country']==selected_country)]
+    filtered_df=filtered_df[(filtered_df['year'].between(year_filter[0], year_filter[1]))]
+
 
     st.dataframe(filtered_df)
 
@@ -49,8 +49,8 @@ elif page=='Analysis':
 
 
 
-    tab1,tab2,tab3,tab4,tab5,tab6=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
-    'Renewable Energy VS. Electricity','Renewable Energy by Continent','Energy Matrix'])
+    tab1,tab2,tab3,tab4,tab5,tab6,tap7=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
+    'Renewable Energy VS. Electricity','Renewable Energy by Continent','Energy Matrix','Summary'])
 
     with tab1:
 
@@ -251,6 +251,9 @@ elif page=='Analysis':
 
         st.markdown("""Renewable energy has a weak relationship with the individual share of energy and energy_per_gdp, 
         but correlates positively with electricity generation""")
+######################################################################################################
+with tab7:
+    st.msarkdown(""""All kinds of renewable energy generation have generally increased overtime with 
 
 
 

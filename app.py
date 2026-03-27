@@ -252,30 +252,30 @@ elif page=='Analysis':
         st.markdown("""Renewable energy has a weak relationship with the individual share of energy and energy_per_gdp, 
         but correlates positively with electricity generation""")
 ######################################################################################################
-with tab7:
-    st.markdown("""
-    # Main Conclusion
+    with tab7:
+        st.markdown("""
+        # Main Conclusion
 
-    **Global Renewable Energy Trends**
+        **Global Renewable Energy Trends**
 
-    All kinds of renewable energy have generally increased over time, with 
-    accelerated growth after 2000. Wind energy and Hydropower are the dominant 
-    resources that have grown more rapidly than other renewables.
+        All kinds of renewable energy have generally increased over time, with 
+        accelerated growth after 2000. Wind energy and Hydropower are the dominant 
+        resources that have grown more rapidly than other renewables.
 
-    However, despite this growth, traditional non-renewable resources(oil, gas, and fossil fuels) 
-    and nuclear energy still contribute the largest share of global energy generation.
-    """)
+        However, despite this growth, traditional non-renewable resources(oil, gas, and fossil fuels) 
+        and nuclear energy still contribute the largest share of global energy generation.
+        """)
 
-    st.markdown("""
-    **Hydropower is the top renewable resource that maintains a 
-    strong positive correlation with total electricity generation.**
-    """)
+        st.markdown("""
+        **Hydropower is the top renewable resource that maintains a 
+        strong positive correlation with total electricity generation.**
+        """)
 
 
-    st.markdown("""
-    Economic Impact:        
-        Higher-income countries generally adopt renewable energy 
-        than lower-income countries.
-    """)
+        st.markdown("""
+        Economic Impact:        
+            Higher-income countries generally adopt renewable energy 
+            than lower-income countries.
+        """)
 
 

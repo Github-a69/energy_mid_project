@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 import statsmodels as sm
-import numpy as np
+
 
 df= pd.read_csv('energy_clean.csv')
 
@@ -28,9 +28,9 @@ year_filter= st.sidebar.slider('year range',min_year,max_year,
 filtered_df=df
 
 if selected_country:
+
     filtered_df = filtered_df[
     (filtered_df['country']==(selected_country))]
-
     filtered_df=filtered_df[(filtered_df['year'].between(year_filter[0], year_filter[1]))]
 
 
@@ -49,7 +49,7 @@ elif page=='Analysis':
 
 
 
-    tab1,tab2,tab3,tab4,tab5,tab6,tap7=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
+    tab1,tab2,tab3,tab4,tab5,tab6,tab7=st.tabs(['Overview','Renewable Energy Over Time','Income-based Analysis',
     'Renewable Energy VS. Electricity','Renewable Energy by Continent','Energy Matrix','Summary'])
 
     with tab1:
@@ -253,10 +253,29 @@ elif page=='Analysis':
         but correlates positively with electricity generation""")
 ######################################################################################################
 with tab7:
-    st.msarkdown(""""All kinds of renewable energy generation have generally increased overtime with 
+    st.markdown("""
+    # Main Conclusion
+
+    **Global Renewable Energy Trends**
+
+    All kinds of renewable energy have generally increased over time, with 
+    accelerated growth after 2000. Wind energy and Hydropower are the dominant 
+    resources that have grown more rapidly than other renewables.
+
+    However, despite this growth, traditional non-renewable resources(oil, gas, and fossil fuels) 
+    and nuclear energy still contribute the largest share of global energy generation.
+    """)
+
+    st.markdown("""
+    **Hydropower is the top renewable resource that maintains a 
+    strong positive correlation with total electricity generation.**
+    """)
 
 
-
-
+    st.markdown("""
+    Economic Impact:        
+        Higher-income countries generally adopt renewable energy 
+        than lower-income countries.
+    """)
 
 

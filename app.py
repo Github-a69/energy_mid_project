@@ -220,18 +220,18 @@ elif page=='Analysis':
 
 
         with col27:
-            fig18=px.bar(continent,y='wind_electricity',x='country')
+            fig19=px.bar(continent,y='wind_electricity',x='country')
             st.plotly_chart(fig18,use_container_width=True)
 
 
 
         with col28:
-            fig18=px.bar(continent,y='biofuel_electricity',x='country')
+            fig20=px.bar(continent,y='biofuel_electricity',x='country')
             st.plotly_chart(fig18,use_container_width=True)
 
 
         with col29:
-            fig18=px.bar(continent,y='hydro_electricity',x='country')
+            fig21=px.bar(continent,y='hydro_electricity',x='country')
             st.plotly_chart(fig18,use_container_width=True)
 
 

@@ -256,14 +256,14 @@ elif page=='Analysis':
         st.markdown("""
         # Main Conclusion
 
-        **Global Renewable Energy Trends**
+        **Global Renewable Energy Trends: **
 
         All kinds of renewable energy have generally increased over time, with 
         accelerated growth after 2000. Wind energy and Hydropower are the dominant 
         resources that have grown more rapidly than other renewables.
 
         However, despite this growth, traditional non-renewable resources(oil, gas, and fossil fuels) 
-        and nuclear energy still contribute the largest share of global energy generation.
+        and nuclear energy still contribute largely in global energy generation.
         """)
 
         st.markdown("""

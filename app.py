@@ -214,25 +214,25 @@ elif page=='Analysis':
             st.plotly_chart(fig18,use_container_width=True)
 
         with col26:
-            fig18=px.bar(continent,y='solar_electricity',x='country')
-            st.plotly_chart(fig18,use_container_width=True)
+            fig19=px.bar(continent,y='solar_electricity',x='country')
+            st.plotly_chart(fig19,use_container_width=True)
 
 
 
         with col27:
-            fig19=px.bar(continent,y='wind_electricity',x='country')
-            st.plotly_chart(fig18,use_container_width=True)
+            fig20=px.bar(continent,y='wind_electricity',x='country')
+            st.plotly_chart(fig20,use_container_width=True)
 
 
 
         with col28:
-            fig20=px.bar(continent,y='biofuel_electricity',x='country')
-            st.plotly_chart(fig18,use_container_width=True)
+            fig21=px.bar(continent,y='biofuel_electricity',x='country')
+            st.plotly_chart(fig21,use_container_width=True)
 
 
         with col29:
-            fig21=px.bar(continent,y='hydro_electricity',x='country')
-            st.plotly_chart(fig18,use_container_width=True)
+            fig22=px.bar(continent,y='hydro_electricity',x='country')
+            st.plotly_chart(fig22,use_container_width=True)
 
 
 

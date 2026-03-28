@@ -256,7 +256,7 @@ elif page=='Analysis':
         st.markdown("""
         # Main Conclusion
 
-        **Global Renewable Energy Trends: **
+        Global Renewable Energy Trends:
 
         All kinds of renewable energy have generally increased over time, with 
         accelerated growth after 2000. Wind energy and Hydropower are the dominant 
